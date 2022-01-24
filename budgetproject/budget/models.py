@@ -21,13 +21,13 @@ class Project(models.Model):
         # temporary solution, because the form currently only allows integer amounts
         total_expense_amount = int(total_expense_amount)
 
-        return self.budget - total_expense_amount
+        return int(self.budget) - total_expense_amount
 
     @property
     def total_transactions(self):
         expense_list = Expense.objects.filter(project=self)
         return len(expense_list)
-
+    
     def get_absolute_url(self):
         return '/' + self.slug
 
